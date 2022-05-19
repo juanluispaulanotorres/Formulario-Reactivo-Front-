@@ -1,0 +1,54 @@
+
+<mat-dialog-content class="mat-typography">
+
+  <div fxLayout="row">
+    <div fxLayout="column" fxFlex="50">
+      <img [src]="persona | imagen" width="200" height="200">
+    </div>
+    <div fxLayout="column" fxFlex="50">
+      <div fxLayout="row" fxFlex="20">
+        <h3><strong>Usuario</strong>: {{ persona.usuario }}</h3>
+      </div>
+      <div fxLayout="column" fxFlex="20">
+        <h3><strong>Nombre</strong>: {{ persona.nombre }}</h3>
+      </div>
+      <div fxLayout="column" fxFlex="20">
+        <h3><strong>Apellido</strong>: {{ persona.apellido }}</h3>
+      </div>
+      <div fxLayout="row" fxFlex="20">
+        <h3>{{ persona.activo ? "Este usuario está activo" : "Este usuario no está activo" }}</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom">
+    <div fxLayout="row">
+      <div fxLayout="column" fxFlex="50">
+        <h3><strong>Ciudad</strong>: {{ persona.ciudad }}</h3>
+      </div>
+    </div>
+
+    <div fxLayout="row">
+      <div fxLayout="column" fxFlex="50">
+        <h3><strong>Correo de la empresa</strong>: {{ persona.correo_empresa }}</h3>
+      </div>
+      <div fxLayout="column" fxFlex="50">
+        <h3><strong>Correo personal</strong>: {{ persona.correo_personal }}</h3>
+      </div>
+    </div>
+
+    <div fxLayout="row">
+      <div fxLayout="column" fxFlex="50">
+        <h3><strong>Fecha de Creación</strong>: {{ persona.f_creacion }}</h3>
+      </div>
+      <div fxLayout="column" fxFlex="50">
+        <h3><strong>Fecha Finalización</strong>: {{ persona.f_finalizacion }}</h3>
+      </div>
+    </div>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Hecho</button>
+</mat-dialog-actions>

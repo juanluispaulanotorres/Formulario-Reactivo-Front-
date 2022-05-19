@@ -1,0 +1,63 @@
+<mat-table [dataSource]="personas" class="mat-elevation-z8">
+
+    <!-- Columna Usuario -->
+    <ng-container matColumnDef="usuario">
+      <th mat-header-cell *matHeaderCellDef> Usuario </th>
+      <td mat-cell *matCellDef="let persona"> {{persona.usuario}} </td>
+    </ng-container>
+
+    <!-- Columna Nombre -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let persona"> {{persona.nombre}} </td>
+    </ng-container>
+
+    <!-- Columna Apellido -->
+    <ng-container matColumnDef="apellido">
+      <th mat-header-cell *matHeaderCellDef> Apellido </th>
+      <td mat-cell *matCellDef="let persona"> {{persona.apellido}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="correo-empresa">
+        <th mat-header-cell *matHeaderCellDef> Correo Empresa </th>
+        <td mat-cell *matCellDef="let persona"> {{persona.correo_empresa}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="correo-personal">
+        <th mat-header-cell *matHeaderCellDef> Correo Personal </th>
+        <td mat-cell *matCellDef="let persona"> {{persona.correo_personal}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="ciudad">
+        <th mat-header-cell *matHeaderCellDef> Ciudad </th>
+        <td mat-cell *matCellDef="let persona"> {{persona.ciudad}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="activo">                                                        <!-- Utilizar una tubería personalizada -->
+        <th mat-header-cell *matHeaderCellDef> Activo </th>
+        <td mat-cell *matCellDef="let persona"> {{ persona.activo ? "Sí" : "No"}} </td>    <!-- <mat-icon>check</mat-icon> -->
+    </ng-container>
+
+    <ng-container matColumnDef="f-creacion">   
+      <th mat-header-cell *matHeaderCellDef> Fecha de Creación </th>
+      <td mat-cell *matCellDef="let persona"> {{ persona.f_creacion | date:'dd/MMM/yyyy':'':'es' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="f-finalizacion"> 
+      <th mat-header-cell *matHeaderCellDef> Fecha de Finalización </th>
+      <td mat-cell *matCellDef="let persona"> {{ persona.f_finalizacion | date:'dd/MMM/yyyy':'':'es' }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="imagen">                                                        <!-- Utilizar una tubería personalizada -->
+      <th mat-header-cell *matHeaderCellDef> Imagen </th>
+      <td mat-cell *matCellDef="let persona"> <img [src]="persona | imagen" width="50" height="50"> </td>
+    </ng-container>
+
+    <ng-container matColumnDef="editar">                                                        <!-- Utilizar una tubería personalizada -->
+      <th mat-header-cell *matHeaderCellDef> </th>
+      <td mat-cell *matCellDef="let persona"> <button mat-button fab-button color="accent" [routerLink]="['/editar/', persona.id]">Editar a {{persona.usuario}}</button> </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</mat-table>

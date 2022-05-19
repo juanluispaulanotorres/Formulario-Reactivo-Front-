@@ -1,0 +1,10 @@
+
+  <h1>Mantenimiento de Datos</h1>
+
+  <div *ngIf="!cargado; else lista">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <ng-template #lista>
+    <app-listado></app-listado>
+  </ng-template>

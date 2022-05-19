@@ -1,0 +1,41 @@
+{
+  "usuarios": [
+    {
+      "id": 1,
+      "usuario": "John Doe",
+      "email": "john.due@gmail.com"
+    }
+  ],
+  "personas": [
+    {
+      "id": "dgff",
+      "usuario": "juanluis",
+      "nombre": "Juan Luis",
+      "apellido": "Paulano",
+      "ciudad": "Jaén",
+      "password": "nueva",
+      "rPasswd": "nueva",
+      "correo_empresa": "juanluis.paulano@bosonit.com",
+      "correo_personal": "paulanojlt@gmail.com",
+      "activo": true,
+      "f_creacion": "2022-02-01",
+      "f_finalizacion": "2022-07-31",
+      "urlImagen": ""
+    },
+    {
+      "id": "7bZYrEb",
+      "usuario": "sandra",
+      "nombre": "Sandra",
+      "apellido": "Torres",
+      "ciudad": "",
+      "password": "sandra",
+      "rPasswd": "sandra",
+      "correo_empresa": "s@bosonit.com",
+      "correo_personal": "s@hotmail.com",
+      "activo": false,
+      "f_creacion": "2022-04-04",
+      "f_finalizacion": "2022-04-27",
+      "urlImagen": ""
+    }
+  ]
+}

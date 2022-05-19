@@ -1,0 +1,137 @@
+<h2 *ngIf="!persona.id; else edicion"> Añadir Nueva Persona </h2>
+<ng-template #edicion>
+    <h2>Editar a {{ persona.usuario }}</h2> 
+</ng-template>
+
+<div fxLayout="row" fxLayoutGap="40px">
+    <div fxFlex="100" fxLayout="column">
+        <form class="example-form" [formGroup]="form">
+
+            <mat-form-field appearance="fill" class="example-full-width" fxLayoutGap="10px" fxLayout="column">
+                <mat-label>Usuario</mat-label>
+                <input matInput name="usuario" formControlName="usuario" required>
+                <mat-error *ngIf="validacion('usuario')">
+                    El campo <i>usuario</i> es obligatorio
+                </mat-error>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10">
+                <mat-form-field appearance="fill" fxFlex="30" fxLayout="column">
+                    <mat-label>Nombre</mat-label>
+                    <input matInput name="nombre" formControlName="nombre" required>
+                    <mat-error *ngIf="validacion('nombre')">
+                        El campo <i>nombre</i> es obligatorio
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex="40" fxLayout="column">
+                    <mat-label>Apellido</mat-label>
+                    <input matInput name="apellido" formControlName="apellido">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex="30" fxLayout="column">
+                    <mat-label>Ciudad</mat-label>
+                    <input matInput name="ciudad" formControlName="ciudad">
+                </mat-form-field>
+            </div>
+
+            <div fxLayoutGap="10px" fxLayout="row" fxLayout.xs="column">
+                <mat-form-field appearance="fill" fxFlex="50" fxLayout="column">
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password" name="password" formControlName="password" required>
+                    <mat-error *ngIf="validacion('password')">
+                        El campo <i>contraseña</i> es obligatorio
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex="50" fxLayout="column">
+                    <mat-label>Repetir Contraseña</mat-label>
+                    <input matInput type="password" name="rPasswd" formControlName="rPasswd" required>
+                    <mat-error *ngIf="validacion('rPasswd')">
+                        El campo <i>repetir contraseña</i> es obligatorio
+                    </mat-error>
+                    <mat-error *ngIf="!passwdMatch()">
+                        Las contraseñas deben coincidir
+                    </mat-error>
+                </mat-form-field>
+            </div>
+
+            {{ this.form.get('password')?.value }}      {{ this.form.get('rPasswd')?.value }}
+
+            <mat-form-field class="example-full-width" appearance="fill" fxLayout="column">
+                <mat-label>Correo Corporativo</mat-label>
+                <input type="email" matInput placeholder="Ej. pat@example.com" name="correo_empresa" formControlName="correo_empresa" required>
+                <mat-error *ngIf="validacion('correo_empresa')">
+                    El patrón del campo <i>correo corporativo</i> no es correcto
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width" appearance="fill" fxLayout="column">
+                <mat-label>Correo Personal</mat-label>
+                <input type="email" matInput placeholder="Ej. ej@example.com" name="correo_personal" formControlName="correo_personal" required>
+                <mat-error *ngIf="validacion('correo_personal')">
+                    El patrón del campo <i>correo personal</i> no es correcto
+                </mat-error>
+            </mat-form-field>
+
+            <div fxLayout="row" fxLayout.xs="column">
+                <div fxLayout="column" fxFlex="30">
+                    <!-- Activo: Radio button -->
+                    <label id="example-radio-group-label">¿Usuario activo?</label> 
+                    <mat-radio-group class="example-radio-group" formControlName="activo">
+                        <mat-radio-button class="example-radio-button" [value]="true">
+                            <mat-label class="form-check-label">Sí</mat-label>
+                        </mat-radio-button>
+                        <mat-radio-button class="example-radio-button" [value]="false">
+                            <mat-label class="form-check-label">No</mat-label>
+                        </mat-radio-button>
+                    </mat-radio-group>
+                    <mat-error *ngIf="validacion('activo')">
+                        El campo <i>activo</i> es obligatorio
+                    </mat-error>
+                </div>
+
+                <div fxLayout="column" fxFlex="70">
+                    <div fxLayout="row" fxFlex="50">
+                        <div fxLayout="column" fxFlex="100">
+                            <!-- Fecha Creación y Fecha de Finalización (rango): Tipo fecha -->
+                            <mat-form-field appearance="fill">
+                                <mat-label>Fecha Creación - Fecha Finalización</mat-label>
+                                <mat-date-range-input [rangePicker]="picker" required>
+                                    <input matStartDate placeholder="Fecha de Creación" formControlName="f_creacion" name="f_creacion" [ngModel]="persona.f_creacion | date:'yyyy-MM-dd'" (ngModelChange)="persona.f_creacion = $event">
+                                    <input matEndDate placeholder="Fecha de Finalización" formControlName="f_finalizacion" name="f_finalizacion" [ngModel]="persona.f_finalizacion | date:'yyyy-MM-dd'" (ngModelChange)="persona.f_finalizacion = $event">
+                                </mat-date-range-input>
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-date-range-picker #picker></mat-date-range-picker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+
+                    <div fxLayout="row">
+                        <div fxLayout="column" fxFlex="100">
+                            <mat-form-field appearance="fill">
+                                <mat-label>URL Imagen</mat-label>
+                                <input matInput name="urlImagen" formControlName="urlImagen">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                </div>
+            </div><br>
+
+            <div fxLayout="row" fxLayout.xs="column">
+                <div fxLayout="column" fxFlex="100">
+                    <button mat-button color="accent" (click)="gestionarUsuario()"> {{ persona.id ? "Editar persona" : "Añadir persona"}} </button>         <!-- (click)="gestionarUsuario()" -->
+                </div>
+                <div fxLayout="column" fxFlex="100" *ngIf="persona.id">
+                    <button mat-button color="warn" (click)="eliminar()">Eliminar persona</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+    <div fxFlex="30" fxLayout="column" fxLayoutAlign="center" fxLayoutAlign.xs="top" *ngIf="persona.id" style="border: 15px inset #540B6E;">
+        <img [src]="persona | imagen">
+    </div>
+
+</div>
